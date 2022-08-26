@@ -26,7 +26,9 @@ class Pedido:
     
     def __str__(self):
 
-        listy = str(self.compras)
+        print('\n\n\n\n' + str(self.compras))
+        itens = Carrinho.lista_itens(self.compras)
+        listy = str(itens)
         nome = str(self.pessoa)
         return nome + ' comprou: ' + listy
         

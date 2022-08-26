@@ -20,11 +20,21 @@ class Carrinho:
         self.itens = {}
 
     def adicionar_item(self, item:Produto, qtd):
-        
-        id = item.get_id()
-        self.itens[id] = qtd
+
+        if item in self.itens:
+            self.itens[item] += qtd
+        else:
+            self.itens[item] = qtd
 
     def remover_item(self, item:Produto):
 
         id = item.get_id()
         del self.itens[id]
+
+    def lista_itens(compras):
+
+        newList = []
+        for item in compras.keys():
+            newList.append(str(item) + str(compras[item]))
+
+        return newList
