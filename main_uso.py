@@ -5,24 +5,34 @@
 # Created Date: 15/08/2022
 # version ='1.0'
 # ---------------------------------------------------------------------------
+import copy
+from itertools import product
 from classes.PessoaFisica import PessoaFisica
 from classes.Endereco import Endereco
+from classes.Produto import Produto
+from classes.Carrinho import Carrinho
+from classes.Pedido import Pedido
+from classes.Pagamentos import Pagamento
 
-
-pessoa1 = PessoaFisica('Carlos', 'tiago@email.com', '524.222.452-6')
-print(pessoa1)
-
-
+pessoa1 = PessoaFisica('524.222.452-6', 'tiago@email.com', 'Carlos')
 end1 = Endereco('08320330', 430)
-print(end1)
-
 end2 = Endereco('04546042', 300)
-print(end2)
-
 pessoa1.adicionar_endereco('casa', end1)
-
-print(pessoa1.listar_enderecos())
-
 pessoa1.adicionar_endereco('trabalho', end2)
-
 print(pessoa1.listar_enderecos())
+
+sabonete = Produto("0010342967", "Sabonete")
+chocolate = Produto("703288402", "Chocolate")
+print(sabonete)
+
+carrinho = Carrinho()
+carrinho.adicionar_item(sabonete, 2)
+
+pedido = Pedido()
+# Lembre-se de adicionar estes atributos ao endereço
+pedido.endereco_entrega = copy.deepcopy(end1) 
+pedido.endereco_faturamento = copy.deepcopy(end2)
+
+pag = Pagamento(pedido)
+print('here! |/_')
+print(pedido)

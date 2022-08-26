@@ -10,5 +10,27 @@
 
 class Produto:
 
-    def __init__(self, id='', nome=''):
-        pass
+    todosProdutos = []
+
+    def __init__(self, id, nome=''):
+        self.id = id
+        self.nome = nome
+        Produto.todosProdutos += [self]
+
+    def set_id(self, novoId):
+        self.id = novoId
+
+    def get_id(self):
+        return self.id
+    
+    def __str__(self):
+        return self.nome
+
+    def busca_nome(busca):
+
+        finalList = []
+        for product in Produto.todosProdutos:
+            if busca in product.nome:
+                finalList += [product]
+
+        return finalList

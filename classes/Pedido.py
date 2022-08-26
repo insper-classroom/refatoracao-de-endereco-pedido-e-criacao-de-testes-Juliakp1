@@ -17,5 +17,17 @@ import re
 class Pedido:
     EM_ABERTO = 1
     PAGO = 2
-    pass
+
+    def __init__(self):
+        self.compras = []
+        self.pessoa = []
+        self.endereco_entrega = ''
+        self.endereco_faturamento = ''
+    
+    def __str__(self):
+
+        listy = str(self.compras)
+        nome = str(self.pessoa)
+        return nome + ' comprou: ' + listy
+        
     

@@ -60,6 +60,9 @@ class Endereco:
         # converte a resposta json em dict
         json_resp = response.json()
         return json_resp
+    
+    def __str__(self):
+        return self.cep
 
 
 
