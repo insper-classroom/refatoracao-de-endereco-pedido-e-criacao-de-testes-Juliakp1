@@ -7,7 +7,7 @@
 # ---------------------------------------------------------------------------
 
 from classes.Endereco import Endereco
-import re
+import numpy as np
 
 
 
@@ -18,6 +18,7 @@ class PessoaFisica:
     acessar e alterar diretamente a propriedade sem uma verificação.
     '''
 
+    databaseDeCeps = [14015-40]
     todasPessoas = []
 
     def __init__(self, cpf, email, nome='Visitante'):
@@ -55,3 +56,8 @@ class PessoaFisica:
                 finalList += [person]
 
         return finalList
+
+
+
+
+

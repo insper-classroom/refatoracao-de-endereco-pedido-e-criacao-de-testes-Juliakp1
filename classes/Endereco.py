@@ -8,6 +8,7 @@
 
 import requests
 import json
+import numpy as np
 
 
 class Endereco: 
@@ -47,6 +48,12 @@ class Endereco:
         # continuam existindo variaveis locais, nem tudo é propriedade de objeto
 
         # end point da API de consulta ao cep
+
+        cep = str(cep)
+        cep = cep.replace("-", "")
+        while len(cep) < 8:
+            cep = '0' + cep
+        
         url_api = f'https://viacep.com.br/ws/{str(cep)}/json/'
 
         # Sem corpo na requisição
@@ -55,14 +62,25 @@ class Endereco:
         headers = {}
 
         # requisição GET na url de pesquisa do cep. Doc.: https://viacep.com.br/
-        response = requests.request("GET", url_api, headers=headers, data=payload)
+        try:
+            response = requests.request("GET", url_api, headers=headers, data=payload)
+        except:
+            raise ConnectionError("No Internet")
 
         # converte a resposta json em dict
         json_resp = response.json()
-        return json_resp
+
+        try:
+            if json_resp["erro"] == 'true' or json_resp["erro"] == True:
+                0    
+            return False
+        except:
+            return json_resp
     
     def __str__(self):
         return self.cep
+
+        
 
 
 
